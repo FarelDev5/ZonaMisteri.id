@@ -1,0 +1,234 @@
+:root {
+  box-sizing: border-box;
+}
+
+i {
+  margin: 0 10px;
+}
+
+html,
+body,
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #a8edea, #fed6e3);
+  /* Gradien latar belakang */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  transition: background 0.5s ease-in-out;
+  /* Transisi halus untuk perubahan latar belakang */
+}
+
+.sidebar {
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.9);
+  /* Latar belakang sidebar semi-transparan */
+  color: #333;
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  /* Tambahkan box shadow */
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  /* Garis bawah lebih halus */
+  padding-bottom: 10px;
+  font-weight: 600;
+  /* Judul lebih tebal */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  color: #555;
+  /* Warna link lebih gelap */
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  /* Border radius lebih besar */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  /* Transisi warna */
+  margin-bottom: 8px;
+  /* Jarak antar link */
+}
+
+.sidebar a:hover {
+  background-color: #f0f0f0;
+  color: #333;
+  /* Warna link berubah saat hover */
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: margin-left 0.3s ease-in-out;
+  position: relative;
+}
+
+.content.active {
+  margin-left: 250px;
+  overflow-x: hidden;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.9);
+  /* Latar belakang container semi-transparan */
+  padding: 3rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 80%;
+  max-width: 500px;
+}
+
+.title {
+  margin-bottom: 30px;
+}
+
+.title h1 {
+  font-size: 2.5em;
+  margin: 0 0 10px 0;
+  /* Atur margin */
+  font-weight: 700;
+  /* Judul lebih tebal */
+}
+
+.title p {
+  margin: 5px 0;
+  font-size: 1.2em;
+  color: #777;
+  /* Warna teks lebih muda */
+}
+
+.menu-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  margin: 10px 0;
+  border-radius: 30px;
+  /* Border radius lebih besar */
+  width: 100%;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /* Transisi transform */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Tambahkan box shadow */
+}
+
+.menu-button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  /* Efek hover naik sedikit */
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+  margin: 0 15px;
+  border-radius: 5px;
+  object-fit: cover;
+  box-shadow: 5px 5px 10px #0005;
+  transition: filter 0.3s ease;
+  /* Transisi filter */
+}
+
+.social-icons img:hover {
+  filter: grayscale(0);
+  /* Hilangkan grayscale saat hover */
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    transform: translateX(0);
+  }
+
+  .menu-button-sidebar {
+    display: none;
+  }
+
+  .content {
+    margin-left: 250px;
+  }
+}
+
+.menu-button-sidebar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1001;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Tambahkan box shadow */
+}
+
+/* Efek Hover pada body untuk mengubah gradien latar belakang */
+body:hover {
+  background: linear-gradient(135deg, #c2f0fc, #f0c2f0);
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer p {
+  background: white;
+  padding: 1rem;
+  border-radius: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}

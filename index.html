@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona Misteri</title>
+  <link rel="stylesheet" href="style.css" </head>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <link rel="icon" href="page/dev/favicon.png">
+
+<body>
+  <div class="content" id="content">
+    <button class="menu-button-sidebar" id="menuButtonSidebar"><i class="fa fa-bars"></i>Menu</button>
+    <div class="container">
+      <div class="title">
+        <h1>ZONA MISTERI</h1>
+        <p>Ini hanya untuk bersenang senang.</p>
+      </div>
+
+      <button onclick="window.location='page/cekkhodam.html'" class="menu-button"><i class="fa fa-ghost"></i>Cek Khodam</button>
+      <button onclick="window.location='page/ceksifat.html'" class="menu-button"><i class="fa fa-brain"></i>Cek Sifat</button>
+      <button onclick="window.location='page/ceknama.html'" class="menu-button"><i class="fa fa-user"></i>Cek Nama</button>
+      <button onclick="window.location='page/kerangajaib.html'" class="menu-button"><i class="fa fa-podcast"></i>Tanya Kerang</button>
+      <button onclick="window.location='page/.html'" class="menu-button"><i class="fa fa-vcard"></i>Kredit</button>
+
+    </div>
+    <footer>
+      <p>©<span id="years"></span> • Creative Lab <span style="color:gray">~Farel Dev</span></p>
+    </footer>
+  </div>
+  <div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <ul>
+      <li><a onclick="feedback()"><i class="fa fa-message"></i>Masukan</a></li>
+      <li><a onclick="window.location='https://saweria.co/FarelAlfareza'" src="img/instagram.png" alt="Instagram"><i class="fa fa-dollar"></i>Open Donasi</a></li>
+      <li><a onclick="window.openCXGenieChatWidget()"><i class="fa fa-message"></i>Bantuan (Creative Ai)</a></li>
+    </ul>
+    <br>
+    <h2>Bagikan</h2>
+    <ul>
+      <li><a onclick="shareTo('whatsapp')"><i class="fab fa-whatsapp"></i>Bagikan Ke whatsapp</a></li>
+      <li><a onclick="shareTo('telegran')"><i class="fab fa-telegram"></i>Bagikan Ke telegram</a></li>
+      <li><a onclick="shareTo('facebook')"><i class="fab fa-facebook"></i>Bagikan Ke Facebook</a></li>
+      <li><a onclick="shareTo('copyLink')"><i class="fa fa-link"></i>CopyLink</a></li>
+    </ul>
+    <br>
+    <h2>Ikuti</h2>
+    <div class="social-icons">
+      <img onclick="window.open('https://instagram.com/farel.project_5')" src="img/instagram.png" alt="Instagram">
+      <img onclick="window.open('https://tiktok.com/@farel.project_5')" src="img/tiktok.png" alt="TikTok">
+      <img onclick="window.open('https://t.me/@fareldeveloper')" src="img/telegram.png" alt="Telegram">
+    </div>
+  </div>
+  <script src="https://widget.cxgenie.ai/widget.js" data-aid="0ee9d1d4-93ed-4e67-aeca-eb7a0b3ad1da" data-lang="en" data-hide-widget-button="true"></script>
+  <script>
+    const date = new Date();
+    const yrs = date.getFullYear();
+    document.getElementById('years').innerText = yrs;
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('content');
+    const menuButtonSidebar = document.getElementById('menuButtonSidebar');
+
+    menuButtonSidebar.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+      content.classList.toggle('active');
+    });
+
+    if (window.innerWidth >= 768) {
+      sidebar.classList.add('active');
+      content.classList.add('active');
+    }
+  </script>
+  <script src="main.js"></script>
+</body>
+
+</html>
