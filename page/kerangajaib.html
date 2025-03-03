@@ -21,9 +21,11 @@
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-i{
-  margin: 0 10px;
-}
+
+    i {
+      margin: 0 10px;
+    }
+
     body {
       background: linear-gradient(135deg, #a8edea, #fed6e3);
       display: flex;
@@ -116,9 +118,10 @@ i{
   <script>
     const date = new Date();
     const yrs = date.getFullYear();
-    function $(query){
+    function $(query) {
       return document.querySelector(query)
     }
+
     document.getElementById('years').innerText = yrs;
 
     const jawabanYaTidak = [
@@ -147,21 +150,21 @@ i{
       'Tidak akan pernah.',
       'Saat kamu siap.',
       'Saat bintang-bintang sejajar.',
-      'Abad depan', 
+      'Abad depan',
       '1 bulan lagi',
-      '2 bulan lagi', 
-      '3 bulan lagi', 
-      '4 bulan lagi', 
-      '5 bulan lagi', 
-      '6 bulan lagi', 
-      '9 bulan lagi', 
-      '7 bulan lagi', 
-      '10 bulan lagi', 
-      '1 tahun lagi', 
-      '2 tahun lagi', 
-      '3 tahun lagi', 
-      '4 tahun lagi', 
-      '5 tahun lagi', 
+      '2 bulan lagi',
+      '3 bulan lagi',
+      '4 bulan lagi',
+      '5 bulan lagi',
+      '6 bulan lagi',
+      '9 bulan lagi',
+      '7 bulan lagi',
+      '10 bulan lagi',
+      '1 tahun lagi',
+      '2 tahun lagi',
+      '3 tahun lagi',
+      '4 tahun lagi',
+      '5 tahun lagi',
     ];
 
     document.getElementById('kerangForm').addEventListener('submit', function (event) {
@@ -171,8 +174,11 @@ i{
       const tanyaButton = document.getElementById('tanya');
       const backButton = document.getElementById('backbutton');
 
-      backButton.style.display = 'none';
-      $('#pertanyaan').style.display = 'none'
+      // Menampilkan tombol kembali dan menyembunyikan form input setelah pertanyaan dikirim
+      backButton.style.display = 'block';
+      $('#pertanyaan').style.display = 'none';
+
+      // Validasi format pertanyaan
       if (pertanyaan.startsWith('bisakah') || pertanyaan.startsWith('apakah')) {
         const kataSetelahAwalan = pertanyaan.split(' ')[1];
         if (!kataSetelahAwalan) {
