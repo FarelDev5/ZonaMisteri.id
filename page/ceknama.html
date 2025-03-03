@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <link rel="icon" href="dev/favicon.png">
+  <title>Cek Nama Panggilan ~ farelDev</title>
+  <style>
+    /* Gaya CSS yang sama seperti sebelumnya */
+    :root {
+      box-sizing: border-box;
+    }
+i{
+  margin: 0 10px;
+}
+    html,
+    body,
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input,
+    button {
+      width: 80%;
+      max-width: 300px;
+      padding: 12px 15px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    #res {
+      margin-top: 2rem;
+      color: #333;
+      display: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    #res p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    #res button {
+      background-color: #008CBA;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>CEK NAMA PANGGILAN KAMU</h1>
+    <p>©<span id="years"></span> • Creative Lab <span style="color:gray">~Farel Dev</span></p>
+    <form onsubmit="cekNamaPanggilan(event)">
+      <input maxlength="20" placeholder="Masukkan Nama" type="text" id="name" required>
+      <button type="submit" id="checkin"><i class="fa fa-search"></i>Mulai Cek</button>
+      <button type="button" id="backbutton" onclick="history.back()"><i class="fa fa-home"></i>Kembali</button>
+    </form>
+    <div id="res"></div>
+  </div>
+
+  <script>
+    const date = new Date();
+    const yrs = date.getFullYear();
+
+    function $(query) {
+      return document.querySelector(query)
+    }
+    document.getElementById('years').innerText = yrs;
+
+    const namaPanggilan = [
+      'Si Jagoan',
+      'Si Cantik',
+      'Si Ganteng',
+      'Si Pemberani',
+      'Si Lucu',
+      'Si Pintar',
+      'Si Pemalas',
+      'Si Rajin',
+      'Si Keren',
+      'Si Aneh',
+      'Si Misterius',
+      'Si Penyayang',
+      'Si Pemarah',
+      'Si Penyabar',
+      'Si Pemalu',
+      'Si Penakut',
+      'Si Kreatif',
+      'Si Jujur',
+      'Si Pembohong',
+      'Si Penolong',
+      'Si Ngocok',
+    ];
+
+    function cekNamaPanggilan(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const resDiv = document.getElementById('res');
+      const checkinButton = document.getElementById('checkin');
+
+      if (!/^[a-zA-Z\s]+$/.test(name)) {
+        if (/[\p{Emoji}]/u.test(name)) {
+          alert(`Hmmmm, Afaaan tuch? gua gk kenal "${name}"`);
+        } else if (/[^a-zA-Z\s]/.test(name)) {
+          alert(`"${name}" Itu nama manusia, apa nama alien? cukup masukin huruf aja sayang! gk boleh ada yang lain, nanti dia cemburu.`);
+        } else {
+          alert(`Error pantek`);
+        }
+        return;
+      }
+
+      $('#name').style.display = 'none'
+      $('#backbutton').style.display = 'none'
+
+      const namaPanggilanRandom = namaPanggilan[Math.floor(Math.random() * namaPanggilan.length)];
+
+      if (name.length <= 2) {
+        alert(`Jir, Manusia mana yang punya nama cuma ${name.length} huruf.`)
+      } else {
+
+        resDiv.innerHTML = `<p>Hasil : <br> Nama panggilan yang cocok untuk <span style="font-weight: bold;">${name}</span> adalah <span style="font-weight: bold;">${namaPanggilanRandom}</span>.</p>
+        <button onclick="restart()"><i class="fa fa-search"></i>Cek Lagi</button>
+        <button type="button" onclick="history.back()"><i class="fa fa-home"></i>Kembali</button>`;
+        resDiv.style.display = 'block';
+        checkinButton.style.display = 'none';
+      }
+    }
+
+    function restart() {
+      location.reload();
+    }
+  </script>
+</body>
+
+</html>

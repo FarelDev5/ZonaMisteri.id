@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="dev/favicon.png">
+  <title>Kerang Ajaib ~ farelDev</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+  <style>
+    /* Gaya CSS yang sama seperti sebelumnya */
+    :root {
+      box-sizing: border-box;
+    }
+
+    html,
+    body,
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+i{
+  margin: 0 10px;
+}
+    body {
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 3rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    input,
+    button {
+      width: 80%;
+      max-width: 300px;
+      padding: 12px 15px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      outline: none;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    #res {
+      margin-top: 2rem;
+      color: #333;
+      display: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    #res p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    #res button {
+      background-color: #008CBA;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Kerang Ajaib</h1>
+    <p>©<span id="years"></span> • Creative Lab <span style="color:gray">~Farel Dev</span></p>
+    <form id="kerangForm">
+      <input placeholder="Tanyakan Sesuatu..." type="text" id="pertanyaan" required>
+      <button type="submit" id="tanya"><i class="fa fa-message"></i>Tanya Kerang</button>
+      <button type="button" id="backbutton" onclick="history.back()" style="display: block;"><i class="fa fa-home"></i>Kembali</button>
+    </form>
+    <div id="res"></div>
+  </div>
+
+  <script>
+    const date = new Date();
+    const yrs = date.getFullYear();
+    function $(query){
+      return document.querySelector(query)
+    }
+    document.getElementById('years').innerText = yrs;
+
+    const jawabanYaTidak = [
+      'Ya.',
+      'Tidak.',
+      'Mungkin.',
+      'Coba tanya lagi.',
+      'Tentu saja!',
+      'Tidak mungkin.',
+      'Saya tidak yakin.',
+      'Tanyakan pada orang lain.',
+      'Kerang Ajaib berkata: "Ya!"',
+      'Kerang Ajaib berkata: "Tidak!"',
+      'Anjir Pertanyaan Paan tuch?'
+    ];
+
+    const jawabanKapan = [
+      '5 hari lagi.',
+      'Minggu depan.',
+      'Bulan depan.',
+      'Tahun depan.',
+      'Nanti malam.',
+      'Besok pagi.',
+      'Dalam waktu dekat.',
+      'Segera.',
+      'Tidak akan pernah.',
+      'Saat kamu siap.',
+      'Saat bintang-bintang sejajar.',
+      'Abad depan', 
+      '1 bulan lagi',
+      '2 bulan lagi', 
+      '3 bulan lagi', 
+      '4 bulan lagi', 
+      '5 bulan lagi', 
+      '6 bulan lagi', 
+      '9 bulan lagi', 
+      '7 bulan lagi', 
+      '10 bulan lagi', 
+      '1 tahun lagi', 
+      '2 tahun lagi', 
+      '3 tahun lagi', 
+      '4 tahun lagi', 
+      '5 tahun lagi', 
+    ];
+
+    document.getElementById('kerangForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const pertanyaan = document.getElementById('pertanyaan').value.toLowerCase().trim();
+      const resDiv = document.getElementById('res');
+      const tanyaButton = document.getElementById('tanya');
+      const backButton = document.getElementById('backbutton');
+
+      backButton.style.display = 'none';
+      $('#pertanyaan').style.display = 'none'
+      if (pertanyaan.startsWith('bisakah') || pertanyaan.startsWith('apakah')) {
+        const kataSetelahAwalan = pertanyaan.split(' ')[1];
+        if (!kataSetelahAwalan) {
+          alert("Pertanyaan harus memiliki kata setelah 'bisakah' atau 'apakah'.");
+          return;
+        }
+        const jawabanRandom = jawabanYaTidak[Math.floor(Math.random() * jawabanYaTidak.length)];
+        resDiv.innerHTML = `<p>Pertanyaan: ${pertanyaan}</p><p>Jawaban: ${jawabanRandom}</p><button onclick="restart()">Tanya Lagi</button><button type="button" onclick="history.back()">Kembali</button>`;
+      } else if (pertanyaan.startsWith('kapan') || pertanyaan.startsWith('kapankah')) {
+        const kataSetelahAwalan = pertanyaan.split(' ')[1];
+        if (!kataSetelahAwalan) {
+          alert("Pertanyaan harus memiliki kata setelah 'kapan' atau 'kapankah'.");
+          return;
+        }
+        const jawabanRandom = jawabanKapan[Math.floor(Math.random() * jawabanKapan.length)];
+        resDiv.innerHTML = `<p>Pertanyaan: ${pertanyaan}</p><p>Jawaban: ${jawabanRandom}</p><button onclick="restart()"><i class="fa fa-message"></i>Tanya Lagi</button><button type="button" onclick="history.back()"><i class="fa fa-home"></i>Kembali</button>`;
+      } else {
+        alert("Pertanyaan harus diawali dengan 'bisakah', 'apakah', 'kapan', atau 'kapankah'.");
+        return;
+      }
+      resDiv.style.display = 'block';
+      tanyaButton.style.display = 'none';
+    });
+
+    function restart() {
+      location.reload();
+    }
+  </script>
+
+</body>
+
+</html>
